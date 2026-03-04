@@ -57,6 +57,7 @@
             :input-border-radius="inputBorderRadius"
             :placeholder="inputPlaceholder"
             :action-align="actionAlign"
+            :show-loading-animation="showLoadingAnimation"
             :send-icon="sendIcon"
             :send-icon-color="sendIconColor"
             :send-icon-size="sendIconSize"
@@ -785,6 +786,7 @@ export default {
 
             // Input action alignment and button styles
             actionAlign: computed(() => props.content?.inputActionAlign || 'end'),
+            showLoadingAnimation: computed(() => props.content?.showLoadingAnimation || false),
             sendButtonBgColor: computed(() => props.content?.sendButtonBgColor || 'linear-gradient(135deg, #3b82f6, #2563eb)'),
             sendButtonHoverBgColor: computed(() => props.content?.sendButtonHoverBgColor || 'linear-gradient(135deg, #2563eb, #1d4ed8)'),
             sendButtonBorder: computed(() => props.content?.sendButtonBorder || 'none'),

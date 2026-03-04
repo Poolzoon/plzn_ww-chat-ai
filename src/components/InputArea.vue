@@ -84,8 +84,9 @@
                 ></textarea>
             </div>
 
-            <!-- Send button -->
+            <!-- Send button / loading state -->
             <button
+                v-if="!showLoadingAnimation"
                 type="button"
                 class="ww-chat-input-area__send-btn"
                 :class="{ 'ww-chat-input-area__send-btn--disabled': !canSend || isUiDisabled }"
@@ -99,6 +100,9 @@
                     v-html="sendIconHtml"
                 ></span>
             </button>
+            <div v-else class="ww-chat-input-area__send-loading" :style="sendButtonStyle" aria-label="Loading">
+                <span class="ww-chat-input-area__spinner"></span>
+            </div>
         </div>
     </div>
 </template>
@@ -190,6 +194,10 @@ export default {
         placeholder: {
             type: String,
             default: 'Type a message...',
+        },
+        showLoadingAnimation: {
+            type: Boolean,
+            default: false,
         },
         // Icon properties
         sendIcon: {
@@ -332,6 +340,7 @@ export default {
         });
 
         const canSend = computed(() => inputValue.value.trim().length > 0 || props.pendingAttachments.length > 0);
+        const showLoadingAnimation = computed(() => props.showLoadingAnimation === true);
         const isUiDisabled = computed(() => props.isDisabled || isEditing.value);
 
         const alignItemsCss = computed(() => {
@@ -381,14 +390,14 @@ export default {
         const onEnterPress = event => {
             if (isEditing.value) return;
 
-            if (!event.shiftKey && canSend.value && !props.isDisabled) {
+            if (!event.shiftKey && canSend.value && !props.isDisabled && !showLoadingAnimation.value) {
                 sendMessage();
             }
             // Note: Shift+Enter still works for new lines, just without resizing
         };
 
         const sendMessage = () => {
-            if (isEditing.value || !canSend.value || props.isDisabled) return;
+            if (isEditing.value || !canSend.value || props.isDisabled || showLoadingAnimation.value) return;
 
             emit('send');
             inputValue.value = '';
@@ -431,6 +440,7 @@ export default {
                 textareaRef,
                 inputValue,
                 canSend,
+                showLoadingAnimation,
                 isUiDisabled,
                 sendIconHtml,
                 attachmentIconHtml,
@@ -741,6 +751,38 @@ export default {
             color: #94a3b8;
             box-shadow: none;
         }
+    }
+
+    &__send-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: v-bind('sendButtonBorderRadius');
+        border: v-bind('sendButtonBorder');
+        background: v-bind('sendButtonBgColor');
+        box-shadow: v-bind('sendButtonBoxShadow');
+        width: v-bind('sendButtonSize');
+        height: v-bind('sendButtonSize');
+        pointer-events: none;
+    }
+
+    &__spinner {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.45);
+        border-top-color: #ffffff;
+        animation: ww-chat-spin 0.8s linear infinite;
+    }
+}
+
+@keyframes ww-chat-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 </style>

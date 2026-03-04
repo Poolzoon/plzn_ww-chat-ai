@@ -107,6 +107,7 @@ export default {
                     'inputBorderRadius',
                     'inputPlaceholder',
                     'inputActionAlign',
+                    'showLoadingAnimation',
                 ],
             },
             {
@@ -898,6 +899,21 @@ export default {
             /* wwEditor:start */
             propertyHelp: {
                 tooltip: 'Vertical alignment of action buttons beside the text input.\n\nPossible values: **`start`**, **`end`**',
+            },
+            /* wwEditor:end */
+        },
+        showLoadingAnimation: {
+            label: { en: 'Show Loading Animation' },
+            type: 'OnOff',
+            section: 'style',
+            bindable: true,
+            classes: true,
+            responsive: true,
+            defaultValue: false,
+            /* wwEditor:start */
+            propertyHelp: {
+                tooltip:
+                    'Hide the send button and show a loading animation in the same spot.\n\nPossible values: **`true`**, **`false`**',
             },
             /* wwEditor:end */
         },
