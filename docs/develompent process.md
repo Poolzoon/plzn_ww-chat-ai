@@ -36,10 +36,11 @@ yarn create @weweb/component my-element --type element
 yarn create @weweb/component hero-section --type section
 The directory will contain:
 
-a src directory with a file for your component (wwSection.vue or wwElement.vue). Available props and events are listed here
+a src directory with a file for your component (wwSection.vue or wwElement.vue). Available props and events are listed here (see [component interface.md](component%20interface.md))
 a package.json with two scripts for dev and build, and weweb/cli as dependencies
 a basic README.md
-a ww-config.js describing all the properties of your component. Learn more about it here
+a ww-config.js describing all the properties of your component. Learn more about it here (see [ww-config doc.md](ww-config%20doc.md))
+
 WARNING
 
 You can add other dependencies if you need to. Be aware that all package.json will be merged in the final web-app and, if two components need the same dependencies, only the more recent one will be installed. This can lead to conflicts.
@@ -109,7 +110,7 @@ Each time you change the code, the component will be refreshed inside the Editor
 Display and develop your component
 You just have to drag-and-drop your component from the dev panel where you want to test it.
 
-You can see the next section for more information about what you can do with your component
+You can see the next section for more information about what you can do with your component (see [component anatomy.md](component%20anatomy.md))
 
 Push in production
 When you are satisfied with your version, you can publish it. WeWeb relies on Github to version components.

@@ -13,7 +13,7 @@ We provide a lot of base elements (like editable text or image), but you can als
 
 Each element or section have what we call a content: it's a data object that holds your custom properties. There are two contexts when your element or section can be loaded: inside the editor (Editor mode) or inside the published web-app (Front mode). In Editor mode the content is editable by the user, and saved on our database on each change. In Front mode the content can only change if it is bound to a dynamic value.
 
-You can use the configuration file (see [ww-config doc.md](ww-config%20doc.md)) to use our build in logic to edit your section/element content, or handle yourself the edition interface. We have a strip logic available, so even if your element/section has a heavy editing logic, this will have no impact on the published web-app. You can learn more about stripping here
+You can use the configuration file (see [ww-config doc.md](ww-config%20doc.md)) to use our build in logic to edit your section/element content, or handle yourself the edition interface. We have a strip logic available, so even if your element/section has a heavy editing logic, this will have no impact on the published web-app.
 
 Your custom components will inherit the base edition interface (see [weweb io objects.md](weweb%20io%20objects.md)), like size, background color or border. Remember that a WeWeb user expects to edit them. You'll want to write your style and javascript with this in mind.
 
@@ -27,5 +27,3 @@ An Element is a smaller block. Elements can be used by Sections or other Element
 TIP
 
 Use a Section if you need to master the layout of your Component or if you will not use it inside other Components. Otherwise go for an Element.
-
-You can learn how to create a custom component here.
