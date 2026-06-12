@@ -6,7 +6,7 @@
     },
     "version": "1.0.0",
     "scripts": {
-        "build": "weweb build",
+        "build": "weweb build name=\"ww-chat\" type=\"element\"",
         "serve": "weweb serve"
     },
     "devDependencies": {
